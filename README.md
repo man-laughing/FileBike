@@ -13,3 +13,6 @@ Filbe Bike share files with your friends.
 * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit) 
 
 ```
+
+## Screenshot
+![avatar](https://raw.githubusercontent.com/man-laughing/FileBike/master/Res/screenshot.png)
