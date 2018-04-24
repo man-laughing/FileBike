@@ -1,0 +1,161 @@
+<html>
+<head> <title>
+       TEST
+    </title> <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet"        href="../static/dropzone.css" type="text/css" />
+    <script type="text/javascript" src="../static/dropzone.js"></script> 
+
+<style type="text/css">
+td {  
+  text-align:center;  
+} 
+
+.hr4 {  
+    height:1px;
+    border:none;
+    border-top:1px 
+    solid #E7C365;
+}
+
+.dropzone {
+    min-height: 100px; 
+    border: 3px dashed rgba(0, 0, 0, 0.3);
+    background: #fde295;
+    padding: 54px 54px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dropzone2 {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+} 
+
+.dropzone:hover {
+    border: 3px dashed #886507;
+}
+
+body {
+    background-color: #fbd97a;
+    text-align: center;
+    font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Roboto,Arial,PingFang SC,Hiragino Sans GB,Microsoft Yahei,Microsoft Jhenghei,sans-serif;
+    color: inherit;
+    text-rendering: optimizeLegibility;
+}
+
+.logo {
+    margin-top: 2%;
+    margin-left:  auto;
+    margin-right: auto;
+}
+   
+</style>
+
+<script type="text/javascript">
+  Dropzone.autoDiscover = false;
+  $(document).ready(function(){
+      $("#myId").dropzone({
+           url: "upload",
+           uploadMultiple: false,
+           autoProcessQueue: true,
+           maxFiles: 1,
+           maxFilesize: 512,
+           timeout: 1800000,
+           accept: function(file, done) {
+              done();
+           },
+           init: function()  {
+              //this.on("addedfile",function(file) {alert("success added."); });
+              this.on("success",function(file,response) {
+                   result = response;
+                   $("#myId").hide();
+                   $("#demo").show();
+                   var zl;
+                   zl = "Click Download " + "<" + result.filename + ">";
+                   $("#Downloadurl").text(zl);
+                   $("#basic-url").val(result.url);
+                   $("#fn").text(result.filename);
+                   $("#fs").text(result.filesize);
+
+     $("#cp").click(function() {
+          $('#basic-url').select();            
+          document.execCommand("copy"); 
+          $("[data-toggle='tooltip']").tooltip("show"); 
+     });
+
+              });
+           }
+      });
+
+     $("#Downloadurl").click(function() {
+         window.location.href=result.url;
+     });
+
+  });
+</script>
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        <a href="/" title="Home"><img src="../static/logo.png" alt="File Bike"></a>
+    </div>
+
+    <div>
+       <h1><a href="/" title="Home">File Bike</a></h1> 
+       <h3>Share files with your friends</h3>
+       <a href="/">Github</a> | <a href="/">Google</a>
+    </div>
+
+    <hr class="hr4">
+
+    <div id="myId" class="dropzone"></div>
+
+    <div style="display:none" id="demo" class="dropzone2">
+          <button type="button" id="Downloadurl" class="btn btn-primary btn-lg btn-block">Click Download</button>
+          <br />
+          <div class="input-group">
+              <span class="input-group-addon" id="basic-addon3">DownloadURL</span>
+              <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+              <span id="cp" style="background-color:green" class="input-group-addon" data-toggle="tooltip" data-placement="right" title="Copied!"><a style="color:white" href="">COPY</a></span> 
+          </div>
+          <br />
+          <div>
+      	     <table class="table table-bordered">
+		<tbody>
+			<tr>
+				<td>Filename</td>
+				<td id="fn">aa.txt</td>
+			</tr>
+			<tr>
+				<td>Size</td>
+				<td id="fs">133344</td>
+			</tr>
+			<tr>
+				<td>Expire</td>
+				<td>300</td>
+			</tr>
+
+		</tbody>
+             </table>
+          </div>
+    </div>
+    
+    <hr class="hr4">
+
+    <div class="footer">
+        <div>
+               @2017 File Bike  <a href="mailto:zhanglei_zl@ehousechina.com">Contact us</a>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
