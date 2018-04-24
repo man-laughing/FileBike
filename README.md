@@ -9,7 +9,7 @@ Filbe Bike share files with your friends.
 ## Usage
 
 ```
-  python run.py 
+#python run.py 
 * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit) 
 
 ```
