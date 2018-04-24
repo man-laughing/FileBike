@@ -1,5 +1,7 @@
+
 # FileBike
-Filbe Bike share files with your friends.
+Filbe Bike share files with your friends.(reference to this https://file.bike)
+
 ## Require
  - Linux operating environment
  - Python 2.7.x 
