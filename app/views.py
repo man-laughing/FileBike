@@ -1,3 +1,4 @@
+#coding=utf8
 import os
 import urllib
 import hashlib
@@ -33,8 +34,10 @@ def download(filename):
 def upload():
     if os.path.exists(app.config.get('UPLOAD_FOLDER')) == False:os.mkdir(app.config.get('UPLOAD_FOLDER'))
     f = request.files['file']
-    fname = f.filename
+    fname = f.filename.encode('utf-8')
     f.save(app.config.get('UPLOAD_FOLDER') + "/" +fname)
     if os.path.exists(app.config.get('UPLOAD_FOLDER') + "/" + fname):
         wodeurl = url_for('download',_external=True,filename=fname)
-        return jsonify({"url":wodeurl,"code":1,"filename":fname,"filesize":os.path.getsize(app.config.get('UPLOAD_FOLDER') + "/" +fname)})
+        md5oristr = "%d/download/%s%s laughing" %(int(time.time())+300,fname,servername)
+        safeurl   =  wodeurl + "?md5=%s&expires=%d" %(ComputeMD5(md5oristr),int(time.time())+300)
+        return jsonify({"url":safeurl,"code":1,"filename":fname,"filesize":os.path.getsize(app.config.get('UPLOAD_FOLDER') + "/" +fname)})
